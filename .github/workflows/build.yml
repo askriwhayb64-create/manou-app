@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -24,17 +25,16 @@ jobs:
           sudo apt update
           sudo apt install -y \
             build-essential \
-            libffi-dev \
-            python3-dev \
+            git \
             zip \
             unzip \
-            git \
-            ccache \
+            openjdk-17-jdk \
             autoconf \
             automake \
             libtool \
             pkg-config \
-            libltdl-dev
+            libffi-dev \
+            libssl-dev
 
       - name: Install Buildozer
         run: |
@@ -44,15 +44,21 @@ jobs:
 
       - name: Accept Android licenses
         run: |
-          yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          yes | sdkmanager --licenses || true
+
+      - name: Install Android tools
+        run: |
+          sdkmanager \
+          "platform-tools" \
+          "platforms;android-33" \
+          "build-tools;33.0.2"
 
       - name: Build APK
         run: |
-          buildozer -v android debug
+          buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ManouAssistant
+          name: manou-assistant
           path: bin/*.apk
- 
