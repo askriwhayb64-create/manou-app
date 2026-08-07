@@ -8,6 +8,7 @@ package.domain = org.manou
 version = 1.0
 
 source.dir = .
+
 source.include_exts = py,png,jpg,kv,atlas,mp3
 
 requirements = python3,kivy,gtts,requests,urllib3,certifi,idna,charset-normalizer
@@ -23,7 +24,7 @@ android.minapi = 21
 
 android.ndk = 25b
 
-android.archs = arm64-v8a
+android.archs = arm64-v8a,armeabi-v7a
 
 android.androidx = True
 
