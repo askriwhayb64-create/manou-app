@@ -5,6 +5,8 @@ title = Manou Assistant
 package.name = manouapp
 package.domain = org.manou
 
+version = 1.0
+
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,mp3
 
